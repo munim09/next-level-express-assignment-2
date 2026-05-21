@@ -1,0 +1,52 @@
+import type { Request, Response } from "express";
+import sendResponse from "../../utils/sendResponse";
+import { authService } from "./auth.service";
+
+const createUser = async (req: Request, res: Response) => {
+    try {
+        console.log(req.body);
+        const { name, email, password, age } = req.body;
+        const result = await authService.createUserIntoDB(req.body);
+        // console.log(result);
+
+        sendResponse(res, {
+            statusCode: 201,
+            success: true,
+            message: "User registered successfully",
+            data: result.rows[0],
+        });
+    } catch (error: any) {
+        sendResponse(res, {
+            statusCode: 500,
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
+const loginUser = async (req: Request, res: Response) => {
+    try {
+        const result = await authService.loginUserIntoDB(req.body);
+        const { token, user } = result;
+        sendResponse(res, {
+            statusCode: 200,
+            success: true,
+            message: "Login successful",
+            data: {
+                token,
+                user,
+            },
+        });
+    } catch (error: any) {
+        sendResponse(res, {
+            statusCode: 500,
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
+export const authController = {
+    createUser,
+    loginUser,
+};

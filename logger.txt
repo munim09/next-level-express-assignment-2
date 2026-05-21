@@ -1,0 +1,8 @@
+
+Method -> GET - Time -> 1779379525069 - URL -> /
+
+Method -> GET - Time -> 1779379525221 - URL -> /favicon.ico
+
+Method -> POST - Time -> 1779379664452 - URL -> /api/auth/signup
+
+Method -> POST - Time -> 1779381009837 - URL -> /api/auth/login
