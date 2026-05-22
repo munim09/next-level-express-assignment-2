@@ -10,6 +10,7 @@ import cors from "cors";
 import globalErrorHandler from "./middleware/glonaErrorHandler";
 import logger from "./middleware/logger";
 import { authRoute } from "./modules/auth/auth.route";
+import { issueRoute } from "./modules/issue/issue.route";
 
 const app: Application = express();
 
@@ -35,5 +36,6 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/auth", authRoute);
+app.use("/api/issues", issueRoute);
 app.use(globalErrorHandler);
 export default app;

@@ -1,4 +1,4 @@
-# Next-level DevPulse Express Assignment - 1
+# Next-level DevPulse Express Assignment - 2
 
 This repository contains solutions for the **Next-level DevPulse Express Assignment - 2** assignment.
 

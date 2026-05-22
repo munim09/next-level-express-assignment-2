@@ -10,7 +10,7 @@ const auth = (...roles: ROLES[]) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             console.log("This is protected route");
-            console.log(req.headers.authorization);
+            // console.log(req.headers.authorization);
             const token = req.headers.authorization;
 
             if (!token) {
@@ -29,16 +29,16 @@ const auth = (...roles: ROLES[]) => {
 
             const userData = await pool.query(
                 `
-                 SELECT * FROM users WHERE email=$1   
+                 SELECT * FROM users WHERE id=$1   
                 `,
-                [decoded.email],
+                [decoded.id],
             );
 
             // console.log(userData);
 
             const user = userData.rows[0];
 
-            console.log(user);
+            // console.log(user);
 
             if (userData.rows.length === 0) {
                 sendResponse(res, {
@@ -48,13 +48,13 @@ const auth = (...roles: ROLES[]) => {
                 });
             }
 
-            if (!user?.is_active) {
-                sendResponse(res, {
-                    statusCode: 403,
-                    success: false,
-                    message: "Forbidden!!",
-                });
-            }
+            // if (!user?.is_active) {
+            //     sendResponse(res, {
+            //         statusCode: 403,
+            //         success: false,
+            //         message: "Forbidden!!",
+            //     });
+            // }
 
             if (roles.length && !roles.includes(user.role)) {
                 sendResponse(res, {

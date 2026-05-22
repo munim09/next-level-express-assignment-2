@@ -6,3 +6,69 @@ Method -> GET - Time -> 1779379525221 - URL -> /favicon.ico
 Method -> POST - Time -> 1779379664452 - URL -> /api/auth/signup
 
 Method -> POST - Time -> 1779381009837 - URL -> /api/auth/login
+
+Method -> POST - Time -> 1779393375989 - URL -> /api/issues
+
+Method -> POST - Time -> 1779393415016 - URL -> /api/auth/login
+
+Method -> POST - Time -> 1779393444415 - URL -> /api/auth/login
+
+Method -> POST - Time -> 1779393506190 - URL -> /api/issues
+
+Method -> POST - Time -> 1779393567520 - URL -> /api/issues
+
+Method -> POST - Time -> 1779393602576 - URL -> /api/issues
+
+Method -> POST - Time -> 1779393630701 - URL -> /api/issues
+
+Method -> POST - Time -> 1779393709255 - URL -> /api/issues
+
+Method -> POST - Time -> 1779393744789 - URL -> /api/issues
+
+Method -> POST - Time -> 1779393778251 - URL -> /api/issues
+
+Method -> POST - Time -> 1779395207650 - URL -> /api/issues
+
+Method -> POST - Time -> 1779395214417 - URL -> /api/issues
+
+Method -> POST - Time -> 1779395276514 - URL -> /api/issues
+
+Method -> POST - Time -> 1779395282917 - URL -> /api/auth/login
+
+Method -> POST - Time -> 1779395291197 - URL -> /api/auth/login
+
+Method -> POST - Time -> 1779395329981 - URL -> /api/auth/signup
+
+Method -> POST - Time -> 1779395353462 - URL -> /api/auth/signup
+
+Method -> POST - Time -> 1779395362696 - URL -> /api/auth/signup
+
+Method -> POST - Time -> 1779395378336 - URL -> /api/issues
+
+Method -> POST - Time -> 1779395469063 - URL -> /api/issues
+
+Method -> POST - Time -> 1779395490176 - URL -> /api/issues
+
+Method -> POST - Time -> 1779395498854 - URL -> /api/issues
+
+Method -> GET - Time -> 1779421485568 - URL -> /api/issues?sort=newest
+
+Method -> GET - Time -> 1779421556376 - URL -> /api/issues?sort=newest
+
+Method -> GET - Time -> 1779421662292 - URL -> /api/issues/1
+
+Method -> GET - Time -> 1779422212973 - URL -> /api/issues?sort=newest
+
+Method -> GET - Time -> 1779422316639 - URL -> /api/issues?sort=newest
+
+Method -> GET - Time -> 1779422377502 - URL -> /api/issues?sort=newest
+
+Method -> GET - Time -> 1779422438326 - URL -> /api/issues?sort=newest&type=bug&status=open
+
+Method -> POST - Time -> 1779422998957 - URL -> /api/issues
+
+Method -> GET - Time -> 1779423718805 - URL -> /api/issues/1
+
+Method -> GET - Time -> 1779423752946 - URL -> /api/issues/1
+
+Method -> GET - Time -> 1779423767235 - URL -> /api/issues/2
