@@ -42,6 +42,14 @@ const getAllIssues = async (req: Request, res: Response) => {
             res,
         );
 
+        if (!result) {
+            sendResponse(res, {
+                statusCode: 404,
+                success: false,
+                message: "Issue Not found!",
+            });
+        }
+
         sendResponse(res, {
             statusCode: 200,
             success: true,
@@ -61,6 +69,14 @@ const getSingleIssues = async (req: Request, res: Response) => {
     try {
         const result = await issueService.getSingleIssue(Number(id), res);
 
+        if (!result) {
+            sendResponse(res, {
+                statusCode: 404,
+                success: false,
+                message: "Issue Not found!",
+            });
+        }
+
         sendResponse(res, {
             statusCode: 200,
             success: true,
@@ -75,13 +91,75 @@ const getSingleIssues = async (req: Request, res: Response) => {
     }
 };
 
-const updateIssue = async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const data = req.body;
+const deleteIssue = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const result = await issueService.deleteDeleteFromDB(Number(id));
+        console.log(result);
+        if (result.rowCount === 0) {
+            sendResponse(res, {
+                statusCode: 404,
+                success: false,
+                message: "Issue Not found!",
+            });
+        }
+
+        sendResponse(res, {
+            statusCode: 200,
+            success: true,
+            message: "Issue deleted successfully",
+        });
+    } catch (error: any) {
+        sendResponse(res, {
+            statusCode: 500,
+            success: false,
+            message: error.message,
+        });
+    }
 };
 
-const deleteIssue = async (req: Request, res: Response) => {
-    const { id } = req.params;
+const updateIssue = async (req: Request, res: Response) => {
+    try {
+        const token = req.headers.authorization;
+        const decoded = jwt.verify(
+            token as string,
+            config.jwt_secret,
+        ) as JwtPayload;
+        console.log("controller decode", decoded);
+
+        const { id } = req.params;
+
+        const result = await issueService.updateIssueFromDB(
+            req.body,
+            id as string,
+            decoded?.role as string,
+            decoded?.id as string,
+        );
+
+        if (result.rows.length === 0) {
+            sendResponse(res, {
+                statusCode: 404,
+                success: false,
+                message: "Issue Not found!",
+                data: {},
+            });
+        }
+
+        // console.log(result);
+
+        sendResponse(res, {
+            statusCode: 200,
+            success: true,
+            message: "Issue updated successfully",
+            data: result.rows[0],
+        });
+    } catch (error: any) {
+        sendResponse(res, {
+            statusCode: 500,
+            success: false,
+            message: error.message,
+        });
+    }
 };
 
 export const issueController = {

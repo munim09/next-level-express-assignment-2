@@ -1,7 +1,7 @@
 import type { Response } from "express";
 import { pool } from "../../db";
+import { USER_ROLE } from "../../types/indesx";
 import type { IIssue } from "../../utils/issue.interface";
-import sendResponse from "../../utils/sendResponse";
 
 const createIssueIntoDB = async (payload: IIssue, id: number) => {
     const { title, description, type, status } = payload;
@@ -54,11 +54,12 @@ const getAllIssues = async (
     const issues = issueResult.rows;
 
     if (issues.length === 0) {
-        sendResponse(res, {
-            statusCode: 404,
-            success: false,
-            message: "No issue found",
-        });
+        return undefined;
+        // sendResponse(res, {
+        //     statusCode: 404,
+        //     success: false,
+        //     message: "No issue found",
+        // });
     }
 
     const reporterIds = [...new Set(issues.map((issue) => issue.reporter_id))];
@@ -111,11 +112,12 @@ const getSingleIssue = async (id: number, res: Response) => {
     );
 
     if (result.rows.length === 0) {
-        sendResponse(res, {
-            statusCode: 404,
-            success: false,
-            message: "Issue not found",
-        });
+        return undefined;
+        // sendResponse(res, {
+        //     statusCode: 404,
+        //     success: false,
+        //     message: "Issue not found",
+        // });
     }
 
     const userResult = await pool.query(
@@ -143,8 +145,63 @@ const getSingleIssue = async (id: number, res: Response) => {
     return formattedIssue;
 };
 
+const deleteDeleteFromDB = async (id: number) => {
+    const result = await pool.query(
+        `
+             DELETE FROM issues WHERE id=$1  `,
+        [id],
+    );
+
+    return result;
+};
+
+const updateIssueFromDB = async (
+    payload: IIssue,
+    id: string,
+    role: string,
+    userId: string,
+) => {
+    const { title, description, type, status } = payload;
+    if (role === USER_ROLE.maintainer) {
+        const result = await pool.query(
+            `
+            UPDATE issues 
+            SET 
+            title=COALESCE($1,title),
+            description=COALESCE($2,description),
+            type=COALESCE($3,type),
+            status=COALESCE($4,status), 
+            updated_at= NOW()
+            WHERE id=$5 RETURNING *
+            `,
+            [title, description, type, status, id],
+        );
+
+        return result;
+    }
+
+    const result = await pool.query(
+        `
+            UPDATE issues 
+            SET 
+            title=COALESCE($1,title),
+            description=COALESCE($2,description),
+            type=COALESCE($3,type),
+            status=COALESCE($4,status), 
+            updated_at= NOW()
+            WHERE id=$5 
+            and status='open'
+            and reporter_id=$6 RETURNING *
+            `,
+        [title, description, type, status, id, userId],
+    );
+    return result;
+};
+
 export const issueService = {
     createIssueIntoDB,
     getAllIssues,
     getSingleIssue,
+    deleteDeleteFromDB,
+    updateIssueFromDB,
 };
