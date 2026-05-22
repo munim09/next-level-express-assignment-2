@@ -28,6 +28,7 @@ const createIssue = async (req: Request, res: Response) => {
             statusCode: 500,
             success: false,
             message: error.message,
+            error: error,
         });
     }
 };
@@ -60,6 +61,7 @@ const getAllIssues = async (req: Request, res: Response) => {
             statusCode: 500,
             success: false,
             message: error.message,
+            error: error,
         });
     }
 };
@@ -75,18 +77,19 @@ const getSingleIssues = async (req: Request, res: Response) => {
                 success: false,
                 message: "Issue Not found!",
             });
+        } else {
+            sendResponse(res, {
+                statusCode: 200,
+                success: true,
+                data: result,
+            });
         }
-
-        sendResponse(res, {
-            statusCode: 200,
-            success: true,
-            data: result,
-        });
     } catch (error: any) {
         sendResponse(res, {
             statusCode: 500,
             success: false,
             message: error.message,
+            error: error,
         });
     }
 };
@@ -114,6 +117,7 @@ const deleteIssue = async (req: Request, res: Response) => {
             statusCode: 500,
             success: false,
             message: error.message,
+            error: error,
         });
     }
 };

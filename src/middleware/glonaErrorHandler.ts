@@ -18,7 +18,7 @@ const globalErrorHandler = (
         statusCode: 500,
         success: false,
         message: err.message || "Internal Server Error",
-        // error: err,
+        error: err,
     });
 };
 
