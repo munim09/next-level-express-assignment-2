@@ -7,6 +7,8 @@ import express, {
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+import { StatusCodes } from "http-status-codes";
+import config from "./config";
 import globalErrorHandler from "./middleware/glonaErrorHandler";
 import logger from "./middleware/logger";
 import { authRoute } from "./modules/auth/auth.route";
@@ -22,12 +24,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(logger);
 app.use(
     cors({
-        origin: "http://localhost:5000",
+        origin: `http://localhost:${config.port}`,
     }),
 );
 
 app.get("/", (req: Request, res: Response) => {
-    res.status(200).json({
+    res.status(StatusCodes.OK).json({
         message: "Express server",
         author: "Next level",
     });

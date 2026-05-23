@@ -1,4 +1,5 @@
 import type { Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
 import jwt, { type JwtPayload } from "jsonwebtoken";
 import config from "../../config";
 import sendResponse from "../../utils/sendResponse";
@@ -18,14 +19,14 @@ const createIssue = async (req: Request, res: Response) => {
         );
 
         sendResponse(res, {
-            statusCode: 201,
+            statusCode: StatusCodes.CREATED,
             success: true,
             message: "Issue created successfully",
             data: result.rows[0],
         });
     } catch (error: any) {
         sendResponse(res, {
-            statusCode: 500,
+            statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
             success: false,
             message: error.message,
             error: error,
@@ -45,20 +46,20 @@ const getAllIssues = async (req: Request, res: Response) => {
 
         if (!result) {
             sendResponse(res, {
-                statusCode: 404,
+                statusCode: StatusCodes.NOT_FOUND,
                 success: false,
                 message: "Issue Not found!",
             });
         }
 
         sendResponse(res, {
-            statusCode: 200,
+            statusCode: StatusCodes.OK,
             success: true,
             data: result,
         });
     } catch (error: any) {
         sendResponse(res, {
-            statusCode: 500,
+            statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
             success: false,
             message: error.message,
             error: error,
@@ -73,20 +74,20 @@ const getSingleIssues = async (req: Request, res: Response) => {
 
         if (!result) {
             sendResponse(res, {
-                statusCode: 404,
+                statusCode: StatusCodes.NOT_FOUND,
                 success: false,
                 message: "Issue Not found!",
             });
         } else {
             sendResponse(res, {
-                statusCode: 200,
+                statusCode: StatusCodes.OK,
                 success: true,
                 data: result,
             });
         }
     } catch (error: any) {
         sendResponse(res, {
-            statusCode: 500,
+            statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
             success: false,
             message: error.message,
             error: error,
@@ -101,20 +102,20 @@ const deleteIssue = async (req: Request, res: Response) => {
         console.log(result);
         if (result.rowCount === 0) {
             sendResponse(res, {
-                statusCode: 404,
+                statusCode: StatusCodes.NOT_FOUND,
                 success: false,
                 message: "Issue Not found!",
             });
         }
 
         sendResponse(res, {
-            statusCode: 200,
+            statusCode: StatusCodes.OK,
             success: true,
             message: "Issue deleted successfully",
         });
     } catch (error: any) {
         sendResponse(res, {
-            statusCode: 500,
+            statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
             success: false,
             message: error.message,
             error: error,
@@ -142,7 +143,7 @@ const updateIssue = async (req: Request, res: Response) => {
 
         if (result.rows.length === 0) {
             sendResponse(res, {
-                statusCode: 404,
+                statusCode: StatusCodes.NOT_FOUND,
                 success: false,
                 message: "Issue Not found!",
                 data: {},
@@ -152,14 +153,14 @@ const updateIssue = async (req: Request, res: Response) => {
         // console.log(result);
 
         sendResponse(res, {
-            statusCode: 200,
+            statusCode: StatusCodes.OK,
             success: true,
             message: "Issue updated successfully",
             data: result.rows[0],
         });
     } catch (error: any) {
         sendResponse(res, {
-            statusCode: 500,
+            statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
             success: false,
             message: error.message,
         });

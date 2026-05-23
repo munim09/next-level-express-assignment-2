@@ -1,4 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
 import sendResponse from "../utils/sendResponse";
 
 const globalErrorHandler = (
@@ -15,7 +16,7 @@ const globalErrorHandler = (
     // });
 
     sendResponse(res, {
-        statusCode: 500,
+        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
         success: false,
         message: err.message || "Internal Server Error",
         error: err,

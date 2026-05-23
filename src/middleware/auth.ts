@@ -1,4 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
 import jwt, { type JwtPayload } from "jsonwebtoken";
 import config from "../config";
 import { pool } from "../db";
@@ -15,17 +16,26 @@ const auth = (...roles: ROLES[]) => {
 
             if (!token) {
                 sendResponse(res, {
-                    statusCode: 401,
+                    statusCode: StatusCodes.UNAUTHORIZED,
                     success: false,
                     message: "Unauthorize access",
                 });
             }
-
-            const decoded = jwt.verify(
-                token as string,
-                config.jwt_secret,
-            ) as JwtPayload;
-            console.log("decode", decoded);
+            let decoded;
+            try {
+                decoded = jwt.verify(
+                    token as string,
+                    config.jwt_secret,
+                ) as JwtPayload;
+                console.log("decode", decoded);
+            } catch (error: any) {
+                sendResponse(res, {
+                    statusCode: StatusCodes.UNAUTHORIZED,
+                    success: false,
+                    message: "Unauthorize access. Invalid token",
+                    error: error,
+                });
+            }
 
             const userData = await pool.query(
                 `
@@ -42,7 +52,7 @@ const auth = (...roles: ROLES[]) => {
 
             if (userData.rows.length === 0) {
                 sendResponse(res, {
-                    statusCode: 404,
+                    statusCode: StatusCodes.NOT_FOUND,
                     success: false,
                     message: "User not found",
                 });
@@ -58,7 +68,7 @@ const auth = (...roles: ROLES[]) => {
 
             if (roles.length && !roles.includes(user.role)) {
                 sendResponse(res, {
-                    statusCode: 403,
+                    statusCode: StatusCodes.FORBIDDEN,
                     success: false,
                     message: "Forbidden!!,This role have no access!",
                 });

@@ -93,6 +93,8 @@ npm i pg
 npm i --save-dev @types/pg
 npm i cors 
 npm i --save-dev @types/cors
+npm install http-status-codes --save
+
 ```
 
 ### 3. Configure Environment Variables
@@ -127,7 +129,7 @@ npm run build
 | `POST` | `/api/auth/signup` | Public | Register a new user |
 | `POST` | `/api/auth/login` | Public | Login and receive JWT |
 
-### 📋 Issues
+### Issues
 
 | Method | Endpoint | Access | Description |
 |--------|----------|--------|-------------|
