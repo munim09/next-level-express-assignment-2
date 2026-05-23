@@ -91,6 +91,8 @@ npm i jsonwebtoken
 npm i --save-dev @types/jsonwebtoken
 npm i pg
 npm i --save-dev @types/pg
+npm i cors 
+npm i --save-dev @types/cors
 ```
 
 ### 3. Configure Environment Variables
