@@ -78,34 +78,18 @@ cd next-level-express-assignment-2
 ### 2. Install Dependencies
 
 ```bash
-npm install
-
 npm init --y
-
 npm i -D typescript
-
 npx tsc --init
-
 npm install express
-
 npm i --save-dev @types/express
-
 npm install -D @types/express
-
-npm i -D tsx
- 
-.env -> npm i dotenv
-
+npm i -D tsx 
+npm i dotenv
 npm i bcryptjs
-
 npm i jsonwebtoken
-
-
 npm i --save-dev @types/jsonwebtoken
-
-
 npm i pg
-
 npm i --save-dev @types/pg
 ```
 
