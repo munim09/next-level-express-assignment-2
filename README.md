@@ -77,7 +77,7 @@ cd next-level-express-assignment-2
 
 ### 2. Install Dependencies
 
-```bash
+```
 npm init --y
 npm i -D typescript
 npx tsc --init
@@ -120,20 +120,20 @@ npm run build
 
 ### Authentication
 
-| Method | Endpoint           |
-| ------ | ------------------ |
-| POST   | `/api/auth/signup` |
-| POST   | `/api/auth/login`  |
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| `POST` | `/api/auth/signup` | Public | Register a new user |
+| `POST` | `/api/auth/login` | Public | Login and receive JWT |
 
-### Issues
+### 📋 Issues
 
-| Method | Endpoint          |
-| ------ | ----------------- |
-| POST   | `/api/issues`     |
-| GET    | `/api/issues`     |
-| GET    | `/api/issues/:id` |
-| PATCH  | `/api/issues/:id` |
-| DELETE | `/api/issues/:id` |
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| `POST` | `/api/issues` | Authenticated | Create a new issue |
+| `GET` | `/api/issues` | Public | Get all issues (with filters) |
+| `GET` | `/api/issues/:id` | Public | Get a single issue |
+| `PATCH` | `/api/issues/:id` | Authenticated | Update an issue |
+| `DELETE` | `/api/issues/:id` | Maintainer only | Delete an issue |
 
 ### Query Parameters
 
