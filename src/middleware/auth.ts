@@ -21,13 +21,51 @@ const auth = (...roles: ROLES[]) => {
                     message: "Unauthorize access",
                 });
             }
-            let decoded;
             try {
-                decoded = jwt.verify(
+                const decoded = jwt.verify(
                     token as string,
                     config.jwt_secret,
                 ) as JwtPayload;
                 console.log("decode", decoded);
+
+                const userData = await pool.query(
+                    `
+                 SELECT * FROM users WHERE id=$1   
+                `,
+                    [decoded.id],
+                );
+
+                // console.log(userData);
+
+                const user = userData.rows[0];
+
+                // console.log(user);
+
+                if (userData.rows.length === 0) {
+                    sendResponse(res, {
+                        statusCode: StatusCodes.NOT_FOUND,
+                        success: false,
+                        message: "User not found",
+                    });
+                }
+
+                // if (!user?.is_active) {
+                //     sendResponse(res, {
+                //         statusCode: 403,
+                //         success: false,
+                //         message: "Forbidden!!",
+                //     });
+                // }
+
+                if (roles.length && !roles.includes(user.role)) {
+                    sendResponse(res, {
+                        statusCode: StatusCodes.FORBIDDEN,
+                        success: false,
+                        message: "Forbidden!!,This role have no access!",
+                    });
+                }
+
+                req.user = decoded;
             } catch (error: any) {
                 sendResponse(res, {
                     statusCode: StatusCodes.UNAUTHORIZED,
@@ -36,45 +74,6 @@ const auth = (...roles: ROLES[]) => {
                     error: error,
                 });
             }
-
-            const userData = await pool.query(
-                `
-                 SELECT * FROM users WHERE id=$1   
-                `,
-                [decoded.id],
-            );
-
-            // console.log(userData);
-
-            const user = userData.rows[0];
-
-            // console.log(user);
-
-            if (userData.rows.length === 0) {
-                sendResponse(res, {
-                    statusCode: StatusCodes.NOT_FOUND,
-                    success: false,
-                    message: "User not found",
-                });
-            }
-
-            // if (!user?.is_active) {
-            //     sendResponse(res, {
-            //         statusCode: 403,
-            //         success: false,
-            //         message: "Forbidden!!",
-            //     });
-            // }
-
-            if (roles.length && !roles.includes(user.role)) {
-                sendResponse(res, {
-                    statusCode: StatusCodes.FORBIDDEN,
-                    success: false,
-                    message: "Forbidden!!,This role have no access!",
-                });
-            }
-
-            req.user = decoded;
             next();
         } catch (error: any) {
             next(error);
