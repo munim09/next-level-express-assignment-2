@@ -55,6 +55,7 @@ const getAllIssues = async (req: Request, res: Response) => {
         sendResponse(res, {
             statusCode: StatusCodes.OK,
             success: true,
+            message: "Issues retrived successfully",
             data: result,
         });
     } catch (error: any) {
@@ -82,6 +83,7 @@ const getSingleIssues = async (req: Request, res: Response) => {
             sendResponse(res, {
                 statusCode: StatusCodes.OK,
                 success: true,
+                message: "Issue retrived successfully",
                 data: result,
             });
         }
@@ -137,11 +139,22 @@ const updateIssue = async (req: Request, res: Response) => {
         const result = await issueService.updateIssueFromDB(
             req.body,
             id as string,
-            decoded?.role as string,
-            decoded?.id as string,
+            decoded.role as string,
+            decoded.id as string,
         );
 
         if (result.rows.length === 0) {
+            const issueRet = await issueService.getSingleIssue(Number(id), res);
+            // console.log(issueRet);
+            if (issueRet) {
+                sendResponse(res, {
+                    statusCode: StatusCodes.FORBIDDEN,
+                    success: false,
+                    message:
+                        "Forbidden. You do not have access to update the issue",
+                    data: {},
+                });
+            }
             sendResponse(res, {
                 statusCode: StatusCodes.NOT_FOUND,
                 success: false,

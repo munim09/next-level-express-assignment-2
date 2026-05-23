@@ -152,3 +152,113 @@ Method -> DELETE - Time -> 1779543390383 - URL -> /api/issues/11
 Method -> DELETE - Time -> 1779543404632 - URL -> /api/issues/11
 
 Method -> DELETE - Time -> 1779543412129 - URL -> /api/issues/11
+
+Method -> POST - Time -> 1779543830522 - URL -> /api/auth/signup
+
+Method -> POST - Time -> 1779543857193 - URL -> /api/auth/signup
+
+Method -> POST - Time -> 1779543870927 - URL -> /api/auth/signup
+
+Method -> POST - Time -> 1779543894277 - URL -> /api/auth/signup
+
+Method -> POST - Time -> 1779543911931 - URL -> /api/auth/signup
+
+Method -> POST - Time -> 1779543959085 - URL -> /api/auth/login
+
+Method -> POST - Time -> 1779543968608 - URL -> /api/auth/login
+
+Method -> POST - Time -> 1779543983101 - URL -> /api/issues
+
+Method -> POST - Time -> 1779543995534 - URL -> /api/issues
+
+Method -> POST - Time -> 1779544011847 - URL -> /api/auth/login
+
+Method -> POST - Time -> 1779544043638 - URL -> /api/issues
+
+Method -> POST - Time -> 1779544087638 - URL -> /api/issues
+
+Method -> POST - Time -> 1779544121700 - URL -> /api/issues
+
+Method -> POST - Time -> 1779544141116 - URL -> /api/issues
+
+Method -> GET - Time -> 1779544153181 - URL -> /api/issues?sort=newest&type=bug&status=open
+
+Method -> GET - Time -> 1779544180340 - URL -> /api/issues?sort=newest&type=&status=open
+
+Method -> GET - Time -> 1779544204091 - URL -> /api/issues?sort=newest&type=&status=in_progress
+
+Method -> GET - Time -> 1779544212234 - URL -> /api/issues?sort=newest&type=&status=
+
+Method -> GET - Time -> 1779544244765 - URL -> /api/issues/10
+
+Method -> GET - Time -> 1779544252722 - URL -> /api/issues/9
+
+Method -> GET - Time -> 1779544377430 - URL -> /api/issues/9
+
+Method -> GET - Time -> 1779544645053 - URL -> /api/issues?sort=newest&type=&status=resolved
+
+Method -> PATCH - Time -> 1779544699179 - URL -> /api/issues/2
+
+Method -> PATCH - Time -> 1779544727776 - URL -> /api/issues/2
+
+Method -> PATCH - Time -> 1779545891531 - URL -> /api/issues/4
+
+Method -> POST - Time -> 1779545907845 - URL -> /api/auth/login
+
+Method -> PATCH - Time -> 1779545929888 - URL -> /api/issues/4
+
+Method -> PATCH - Time -> 1779545966258 - URL -> /api/issues/4
+
+Method -> PATCH - Time -> 1779546255530 - URL -> /api/issues/4
+
+Method -> PATCH - Time -> 1779546270122 - URL -> /api/issues/4
+
+Method -> PATCH - Time -> 1779546469682 - URL -> /api/issues/5
+
+Method -> PATCH - Time -> 1779546509225 - URL -> /api/issues/5
+
+Method -> PATCH - Time -> 1779546862271 - URL -> /api/issues/5
+
+Method -> PATCH - Time -> 1779546902796 - URL -> /api/issues/5
+
+Method -> PATCH - Time -> 1779546925032 - URL -> /api/issues/5
+
+Method -> PATCH - Time -> 1779546962025 - URL -> /api/issues/6
+
+Method -> PATCH - Time -> 1779546990051 - URL -> /api/issues/2
+
+Method -> PATCH - Time -> 1779547017168 - URL -> /api/issues/4
+
+Method -> PATCH - Time -> 1779547029525 - URL -> /api/issues/7
+
+Method -> PATCH - Time -> 1779547040692 - URL -> /api/issues/7
+
+Method -> PATCH - Time -> 1779547061985 - URL -> /api/issues/9
+
+Method -> POST - Time -> 1779547086441 - URL -> /api/auth/login
+
+Method -> DELETE - Time -> 1779547111398 - URL -> /api/issues/11
+
+Method -> GET - Time -> 1779547125075 - URL -> /api/issues/9
+
+Method -> GET - Time -> 1779547137906 - URL -> /api/issues?sort=newest&type=&status=resolved
+
+Method -> POST - Time -> 1779547160400 - URL -> /api/auth/login
+
+Method -> POST - Time -> 1779547189486 - URL -> /api/issues
+
+Method -> PATCH - Time -> 1779547234106 - URL -> /api/issues/9
+
+Method -> PATCH - Time -> 1779547253836 - URL -> /api/issues/10
+
+Method -> PATCH - Time -> 1779547287683 - URL -> /api/issues/10
+
+Method -> PATCH - Time -> 1779547317021 - URL -> /api/issues/9
+
+Method -> DELETE - Time -> 1779547327963 - URL -> /api/issues/11
+
+Method -> DELETE - Time -> 1779547338961 - URL -> /api/issues/11
+
+Method -> DELETE - Time -> 1779547345361 - URL -> /api/issues/10
+
+Method -> DELETE - Time -> 1779547367381 - URL -> /api/issues/7
